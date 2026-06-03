@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Lumina — Glass New Tab",
+  "version": "2.1.0",
+  "description": "A cinematic glassmorphism new tab with persistent video/image backgrounds, clock, and search.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "action": {
+    "default_title": "Lumina New Tab"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; media-src 'self' blob:; img-src 'self' blob: data:"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["*.mp4", "*.webm", "*.ogg", "*.jpg", "*.jpeg", "*.png", "*.gif", "*.webp"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

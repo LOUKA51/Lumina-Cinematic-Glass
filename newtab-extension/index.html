@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="no-media">
+
+  <!-- ░░ BACKGROUND LAYER ░░ -->
+  <div id="bg-layer">
+    <!-- Dark overlay for readability -->
+    <div id="bg-overlay"></div>
+
+    <!-- Video element — shown when media type is video -->
+    <video id="bg-video" autoplay muted loop playsinline></video>
+
+    <!-- Image element — shown when media type is image -->
+    <img id="bg-image" alt="" aria-hidden="true" />
+  </div>
+
+  <!-- ░░ NOISE GRAIN OVERLAY ░░ -->
+  <div id="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ░░ MAIN CONTENT ░░ -->
+  <main id="main-content">
+
+    <!-- CLOCK & DATE -->
+    <div class="glass-card clock-card" id="clock-container">
+      <div id="clock-time">00:00</div>
+      <div id="clock-seconds-bar">
+        <div id="clock-seconds-fill"></div>
+      </div>
+      <div id="clock-date"></div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="glass-card search-card" id="search-container">
+      <div id="search-inner">
+        <span id="search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search the web..."
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search Google"
+        />
+        <button id="search-btn" aria-label="Submit search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- GREETING -->
+    <div id="greeting-line" class="fade-in-up"></div>
+
+  </main>
+
+  <!-- ░░ SETTINGS BUTTON ░░ -->
+  <button id="settings-btn" class="glass-btn" aria-label="Open settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+  </button>
+
+  <!-- ░░ SETTINGS PANEL ░░ -->
+  <div id="settings-backdrop" aria-hidden="true"></div>
+  <aside id="settings-panel" role="dialog" aria-modal="true" aria-label="Settings">
+
+    <div id="settings-header">
+      <span id="settings-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        Preferences
+      </span>
+      <button id="settings-close" aria-label="Close settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="settings-body">
+
+      <!-- SECTION: APPEARANCE -->
+      <div class="settings-section">
+        <p class="settings-section-label">Appearance</p>
+
+        <!-- Blur toggle -->
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-title">Background Blur</span>
+            <span class="settings-row-desc">Apply frosted glass blur to background media</span>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle background blur">
+            <input type="checkbox" id="blur-toggle" />
+            <span class="toggle-track">
+              <span class="toggle-knob"></span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Grain toggle -->
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-title">Film Grain</span>
+            <span class="settings-row-desc">Cinematic noise texture overlay</span>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle film grain">
+            <input type="checkbox" id="grain-toggle" checked />
+            <span class="toggle-track">
+              <span class="toggle-knob"></span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Overlay intensity -->
+        <div class="settings-row settings-row-col">
+          <div class="settings-row-info">
+            <span class="settings-row-title">Overlay Darkness</span>
+            <span class="settings-row-desc">Dim the background for readability</span>
+          </div>
+          <div class="slider-wrap">
+            <input type="range" id="overlay-slider" min="0" max="85" value="45" />
+            <span class="slider-value" id="overlay-value">45%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: BACKGROUND MEDIA -->
+      <div class="settings-section">
+        <p class="settings-section-label">Background Media</p>
+
+        <!-- Current media info badge -->
+        <div id="media-type-badge" class="media-badge" style="display:none;"></div>
+
+        <div class="settings-row settings-row-col">
+          <div class="settings-row-info">
+            <span class="settings-row-title">Upload Background</span>
+            <span class="settings-row-desc">Video (MP4, WebM) or Image (JPG, PNG, GIF, WebP) · Stored in IndexedDB</span>
+          </div>
+          <label id="media-upload-label" class="upload-btn" for="media-file-input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Choose File
+          </label>
+          <input
+            type="file"
+            id="media-file-input"
+            accept="video/mp4,video/webm,video/ogg,image/jpeg,image/png,image/gif,image/webp"
+            style="display:none;"
+          />
+          <div id="media-status" class="video-status"></div>
+        </div>
+
+        <div class="settings-row settings-row-col" id="remove-media-row" style="display:none;">
+          <button id="remove-media-btn" class="danger-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+            Remove Background
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTION: CLOCK -->
+      <div class="settings-section">
+        <p class="settings-section-label">Clock</p>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-title">24-Hour Format</span>
+            <span class="settings-row-desc">Toggle between 12h and 24h time display</span>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle 24 hour format">
+            <input type="checkbox" id="format-24h-toggle" />
+            <span class="toggle-track">
+              <span class="toggle-knob"></span>
+            </span>
+          </label>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-info">
+            <span class="settings-row-title">Show Seconds Bar</span>
+            <span class="settings-row-desc">Animated progress bar for seconds</span>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle seconds bar">
+            <input type="checkbox" id="seconds-bar-toggle" checked />
+            <span class="toggle-track">
+              <span class="toggle-knob"></span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+    </div><!-- /settings-body -->
+
+    <div id="settings-footer">
+      <span>Lumina v2.1 — Glass New Tab</span>
+    </div>
+
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
