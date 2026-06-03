@@ -3,12 +3,12 @@ Hey everyone!  Meet Lumina, a sleek, glassmorphism-inspired New Tab extension fo
 
 How to Install
 
-Unzip the files: Extract the downloaded ZIP file into a folder somewhere on your computer.
+Unzip the files: Extract the downloaded ZIP file somewhere on your computer.
 
 Open Extensions: Open Google Chrome and paste chrome://extensions/ into your address bar.
 
-Turn on Developer Mode: Flick the Developer mode switch in the top right corner.
+Turn on Developer mode: Flick the switch in the top right corner.
 
-Load the extension: Click the Load unpacked button that appears on the top left, then select the folder you just extracted.
+Load the extension: Click the Load unpacked button in the top left. Important: Make sure you specifically select the inner newtab-extension folder, not the main extracted folder!
 
 Enjoy: Pop open a new tab, and Lumina is instantly good to go!
