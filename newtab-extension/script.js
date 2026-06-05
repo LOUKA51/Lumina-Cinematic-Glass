@@ -165,13 +165,76 @@ const padZero  = (n) => String(n).padStart(2, '0');
 const getAmPm  = (h) => h < 12 ? 'AM' : 'PM';
 const fmtHour  = (h, use24) => use24 ? padZero(h) : padZero(h % 12 || 12);
 
-function getGreeting(h) {
-  if (h < 5)  return 'Still up? 🌙';
-  if (h < 12) return 'Good morning ☀️';
-  if (h < 17) return 'Good afternoon 🌤️';
-  if (h < 21) return 'Good evening 🌆';
-  return 'Good night 🌙';
+/* ─── RANDOM PROMPT LIST ─────────────────────────────────── */
+const PROMPTS = [
+  "What's on your mind today? 🤔",
+  "How can I help you right now? 💡",
+  "Got any questions for me? 🧐",
+  "What are we working on today? 🚀",
+  "Need a hand with anything? 🤝",
+  "What's your main focus for today? 🎯",
+  "Ready to dive into something new? 🌊",
+  "What are you exploring today? 🧭",
+  "Is there anything specific you're looking for? 🔍",
+  "How are things going on your end? ✨",
+  "What problem can we solve together today? 🧩",
+  "Any exciting ideas you want to share? 💭",
+  "Where should we start today? 🏁",
+  "What can I assist you with today? 🤖",
+  "Feeling stuck on anything? 🚧",
+  "What's the big goal for today? 🏆",
+  "How can we make today productive? 📈",
+  "Ready to tackle your to-do list? 📝",
+  "Got a creative spark today? ✨",
+  "What's the challenge for today? ⚔️",
+  "Looking for some inspiration? 🌅",
+  "Want to brainstorm some ideas? 🧠",
+  "How can I make your day easier? 🛋️",
+  "Ready to learn something new? 📚",
+  "What's the plan of action? 🗺️",
+  "Need some quick advice? 🗣️",
+  "Are we coding something cool today? 💻",
+  "Want to analyze some data? 📊",
+  "Looking to optimize your workflow? ⚙️",
+  "What's the most important task right now? 🥇",
+  "Ready to build something amazing? 🏗️",
+  "Need a fresh perspective? 👓",
+  "How about we solve a puzzle? 🎲",
+  "What's inspiring you lately? 🌟",
+  "Want to write something awesome? ✍️",
+  "Ready to conquer the day? 🏔️",
+  "Need me to review anything? 📋",
+  "What's next on your agenda? 📅",
+  "Looking for some technical help? 🔧",
+  "How can we improve things today? 🛠️",
+  "Ready to troubleshoot an issue? 🚑",
+  "What's catching your attention today? 🎣",
+  "Need help drafting a message? ✉️",
+  "Are we designing something today? 🎨",
+  "Looking for a summary or recap? 🗞️",
+  "Ready for some deep focus? 🎧",
+  "What's the ultimate vision? 🔭",
+  "Need help organizing your thoughts? 🗂️",
+  "How about a quick brainstorming session? ⛈️",
+  "Ready to make some magic happen?",
+];
+
+/**
+ * Pick a random prompt on each new tab open.
+ * Uses a simple Fisher-Yates–derived single pick so that
+ * the same prompt never repeats twice in a row.
+ */
+let lastPromptIndex = -1;
+function getRandomPrompt() {
+  let idx;
+  do { idx = Math.floor(Math.random() * PROMPTS.length); }
+  while (idx === lastPromptIndex && PROMPTS.length > 1);
+  lastPromptIndex = idx;
+  return PROMPTS[idx];
 }
+
+/* Set greeting once on load — does NOT change every tick */
+const PAGE_PROMPT = getRandomPrompt();
 
 let lastSecond = -1;
 
@@ -188,7 +251,7 @@ function tickClock() {
   }
 
   clockDate.textContent = `${DAY_NAMES[now.getDay()]}, ${MONTH_NAMES[now.getMonth()]} ${now.getDate()} · ${now.getFullYear()}`;
-  greetingLine.textContent = getGreeting(h);
+  greetingLine.textContent = PAGE_PROMPT;
 }
 
 function startClock() {
